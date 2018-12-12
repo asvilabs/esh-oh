@@ -1,2 +1,2 @@
-# esh-oh-legacy
+# esh-oh
 ESH and OH 2.x Contributions
