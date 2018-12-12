@@ -51,6 +51,7 @@ for arpEntry in "${arpReachable[@]}" ; do
     hostIpTest=${host//\./}
     if [[ $hostIpTest =~ ^[0-9]+$ ]] ; then
         hostIsIp=yes
+        #echo "$host is IP"
         if [ -z "$hostname" ] && [  -n "`type -P avahi-resolve`" ] ; then
             hostnameMDNS=$(avahi-resolve --address $host 2>/dev/null | grep -i -v --extended-regex "(failed)|(not found)|(timeout)" | awk "/$host/ { print \$2 }" 2>/dev/null)
             [ -n "$hostnameMDNS" ] && { hostname="$hostnameMDNS"; hostIsIp=no; }
@@ -66,6 +67,9 @@ for arpEntry in "${arpReachable[@]}" ; do
         if [ -z "$hostname" ] && [ -n "`type -P host`" ] ; then
             hostnameDNS=$(host $host 2>/dev/null | awk "/domain name pointer/ { print \$5 }")
             [ -n "$hostnameDNS" ] && { hostname="$hostnameDNS"; hostIsIp=no; }
+        fi
+        if [ -z "$hostname" ] ; then
+            hostname=$host
         fi
     else
         hostname=$host
