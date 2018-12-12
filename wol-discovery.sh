@@ -11,6 +11,8 @@
 # Sample Output:
 #   time-capsule.local b8:c7:5d:ce:eb:ad eth0 10.1.255.255
 #   LibreELEC.local 94:de:80:76:97:ch eth1 192.168.1.255
+# Note: This script is packaged inside wakeonlan bundle jar. You don't have to
+#       install it manually
 #===============================================================================
 export PATH="/sbin:/usr/sbin:/bin:/usr/bin:/usr/local/sbin:/usr/local/bin"
 
